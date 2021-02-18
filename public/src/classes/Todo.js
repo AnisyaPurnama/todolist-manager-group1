@@ -1,11 +1,5 @@
+'use strict';
 
-    'use strict';
-
-    import {
-        restMethods
-    } from '../rest.js';
-
- 
 export class Todo {
     constructor(text, id, completed) {
         this.todoText = text;
@@ -56,14 +50,7 @@ export class Todo {
         return li;
     }
 
-        add() {
-            const storeJson = {
-                "todoText": this.todoText,
-                "completed": this.completed,
-                "id": this.id,
-            }
-            restMethods.postTodo(storeJson);
-        }
+}
 
-    }
+
 
