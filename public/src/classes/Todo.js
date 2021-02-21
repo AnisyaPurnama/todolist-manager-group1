@@ -106,4 +106,48 @@ export class Todo {
         restMethods.patchTodo(this.id, storeJson);
     }
 
-}
+    //toggle all
+
+    static async toggleAll() {
+        console.log("toggleAll");
+        // taking all todos from API  
+        const todos = await restMethods.getAll();
+    ​
+        const allTrue = todos.every((todo) => todo.completed == true);
+        // if all todos completed property is true just change the completed to false
+        
+        if (allTrue) {
+            todos.map((todo) => {
+            let toggle;
+        const textField = document.querySelector(`#text-${todo.id}`);
+    ​           textField.classList.remove("strike");
+            toggle = false;
+    ​
+        const storeJson = {
+            todoText: todo.todoText,
+            completed: toggle,
+            id: todo.id,
+            };
+    ​
+        restMethods.patchTodo(todo.id, storeJson);
+        });
+        } else { // else just change completed to true 
+            todos.map((todo) => {
+            let toggle;
+            const textField = document.querySelector(`#text-${todo.id}`);
+    ​
+            textField.classList.add("strike");
+            toggle = true;
+    ​
+        const storeJson = {
+            todoText: todo.todoText,
+            completed: toggle,
+            id: todo.id,
+        };
+    ​
+            restMethods.patchTodo(todo.id, storeJson);
+        });
+        }
+    }
+    }
+    
