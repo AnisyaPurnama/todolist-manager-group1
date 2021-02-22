@@ -37,7 +37,6 @@ export class Todo {
         const edit = document.createElement("SPAN");
         edit.classList.add('edit');
         edit.addEventListener('click', () => this.edit());
-        edit.innerHTML = '<i class="fas fa-pen"></i>';
         const del = document.createElement("SPAN");
         del.classList.add('delete');
         del.innerHTML = '<i class="fa fa-trash"></i>';
