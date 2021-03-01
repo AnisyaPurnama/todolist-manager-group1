@@ -6,89 +6,88 @@
 body {
   font: 14px 'Poppins', sans-serif;
   line-height: 1.4em;
-  background: linear-gradient(120deg, #575652, #030303);
   min-width: 230px;
-  max-width: 550px;
+  max-width: 610px;
   margin: 0 auto;
   font-weight: 250;
+  background: linear-gradient(120deg, #575652, #030303);
   min-height: 100vh;
 }
 
-.wrapper{
-
- position: absolute;
- width: 600px;
- height: 120px;
- top: 200px;
- box-sizing: border-box;
- background: rgba(0, 0, 0, 0.8);
- border-radius: 10px;
- padding: 1rem;
- margin: 1rem;
+.wrapper {
+  min-width: 120px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  padding: 1rem;
 }
-
-
-
+.wrapper-h1{
+  padding: 80px;
+}
 h1 {
- position: absolute;
-  right: 10rem;
-  top: -100px;
-  width: 50%;
+
   font-size: 100px;
   color: orange;
   text-align: center;
 }
-.new-todo{
+
+.new-todo {
   text-align: center;
-  margin-top: 25px;
-  width: 450px;
-  font-size: 24px;
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: 1.4em;
+  margin-top: 10px;
+  line-height: 2.6em;
   border: 0;
-  padding: 6px;
   box-sizing: border-box;
-  background:orange;
+  background: orange;
   border-radius: 10px;
   outline: none;
   font-weight: bold;
 }
+
 .btn {
   display: none;
   position: absolute;
   background-image: url('https://image.flaticon.com/icons/svg/875/875068.svg');
   background-repeat: no-repeat;
-  right:15px;
+  right: 15px;
   bottom: 30px;
   outline: none;
   border: none;
   height: 35px;
   border-radius: 25px;
   width: 32px;
-  color:black;
+  color: black;
   cursor: pointer;
   transition: .5s;
   margin: 0.25rem;
 }
 
-button {
+#delete-all {
   background: black;
   height: 45px;
   width: 45px;
   border-radius: 10px;
   color: grey;
   font-weight: bold;
-  right: 23px;
-  top: 40px;
   cursor: pointer;
-  position: absolute;
   outline: none;
- margin: 0.20rem;
+  margin: 0.20rem;
+}
+.validate-btns,
+.close {
+  background: black;
+  border-radius: 8px;
+  color: rgb(189, 189, 189);
+  font-weight: bold;
+  padding: 0.5rem;
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px;
+}
+.close{
+  margin-top: 0;
 }
 
 #toggle-all {
-  
+
   background: url(https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/arrow_down-512.png) center center / cover no-repeat;
   outline: none;
   height: 45px;
@@ -96,27 +95,34 @@ button {
   width: 45px;
   cursor: pointer;
   margin: 0.25rem;
- font-weight: bold;
- text-align: center;
- 
- 
+  font-weight: bold;
+  text-align: center;
 }
 
-.add-items{
-  padding:0;
-
+.add-items {
+  padding: 0;
 }
 
 /*****************/
-#root{
-  padding-top: 50px;
+#todoForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
 }
-.todos{
-  width: 100%;
+#root {
+  padding-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.todos {
+  width: 94%;
   background-color: black;
   border-radius: 10px;
 }
-.todos li{
+
+.todos li {
   list-style: none;
   padding: 8px;
   width: 100%;
@@ -124,24 +130,28 @@ button {
   justify-content: space-between;
   border-bottom: 1px solid black;
 }
+
 .todos li span {
-text-align: center;
-display: inline-block;
-outline: none;
-height: 30px;
-border-radius: 10px;
-color: grey;
-cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  outline: none;
+  height: 30px;
+  border-radius: 10px;
+  color: grey;
+  cursor: pointer;
 
 
 }
 
-.done, .edit, .delete{
+.done,
+.edit,
+.delete {
   border-radius: 10px;
   padding: 6px;
   font-weight: bold;
- }
- .done {
+}
+
+.done {
   background: url(https://cdn1.iconfinder.com/data/icons/flat-and-simple-part-1/128/arrow_down-512.png) center center / cover no-repeat;
   outline: none;
   height: 45px;
@@ -149,19 +159,131 @@ cursor: pointer;
   width: 45px;
   cursor: pointer;
   margin: 0.25rem;
- }
+}
 
-.li-text{
+.li-text {
   width: 60%;
-  line-height: 45px;
+  line-height: 35px;
   background: orange;
-  border-radius: 10px;
   font-family: inherit;
   font-size: 20px;
   text-align: center;
   border-radius: 10px;
   outline: none;
+  word-wrap: break-word;
+  display: inline;
+  border: 0;
 }
+
 .strike {
   text-decoration: line-through;
 }
+
+/**
+input width auto-grow
+https://codepen.io/shshaw/pen/c72208b279d750f1ab46b6a45bbd04d7](https://codepen.io/shshaw/pen/c72208b279d750f1ab46b6a45bbd04d7
+**/
+.input-sizer {
+  display: inline-grid;
+  align-items: center;
+  position: relative;
+  padding: 0.25em 0.5em; 
+  margin: 5px;
+}
+.input-sizer.stacked {
+  padding: 0.5em;
+  align-items: stretch;
+}
+.input-sizer.stacked::after,
+.input-sizer.stacked input{
+  grid-area: 2/1;
+}
+.input-sizer::after,
+.input-sizer input {
+  height: auto;
+  width: auto;
+  min-width: 17em;
+  grid-area: 1/2;
+  font-size: 18px;
+  padding: 1px 14px;
+}
+.input-sizer::after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre-wrap;
+}
+
+/*
+modal
+https://www.w3schools.com/howto/howto_css_modals.asp
+*/
+
+ /* The Modal (background) */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 200%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  animation: enter 0.3s linear forwards;
+}
+@keyframes enter {
+  from {top: -300px;}
+  to {top: 0;}
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 12px;
+  font-size: 22px;
+  line-height:34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(255, 165, 0);
+}
+#modal-title-container{
+  width: 90%;
+  margin-right: 20px;
+}
+#modal-title{
+  font-weight: bold;
+  font-size: 26px;
+  color: rgb(39, 39, 39);
+  padding-bottom: 6px;
+}
+#modal-span{
+  background: rgb(39, 39, 39);;
+  border-radius: 12px;
+  color: white;
+  padding: 6px;
+}
+
+#modal-body{
+  padding-top: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(197, 197, 197);
+} 

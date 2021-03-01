@@ -1,10 +1,11 @@
 'use strict';
 
-import {
-    restMethods
-} from '../rest.js';
+import { restMethods } from '../rest.js';
+import { logger } from "../../lib/logger.js";
 
-
+/**
+ * Todo class
+ */
 export class Todo {
     constructor(text, id, completed) {
         this.todoText = text;
@@ -13,31 +14,44 @@ export class Todo {
         console.log('new todo: ', this.id);
     }
 
-    getText() {
-        return this.todoText
-    }
-    setText(text) {
-        this.todoText = text
-    }
     render() {
+        const maxlength = 34;
         const li = document.createElement('LI');
         li.classList.add('todo-lists');
         li.id = this.id;
-        const spanDone = document.createElement("SPAN");
+        const spanDone = document.createElement('SPAN');
         spanDone.classList.add('done');
         spanDone.addEventListener('click', () => this.toggle());
 
-        const divText = document.createElement('DIV');
+        const divText = document.createElement('INPUT');
         divText.setAttribute('contenteditable', true);
+        divText.setAttribute('maxlength', maxlength);
+        //input's width auto-grow
+        divText.setAttribute('oninput','this.parentNode.dataset.value = this.value');
         divText.classList.add('li-text');
-        divText.id = `text-${this.id}`;
-        divText.innerText = this.todoText;
+        //check toggle
+        if (this.completed){ 
+            divText.id = `text-${this.id}`;
+            divText.classList.add('strike');
+        }
+        else{
+            divText.id = `text-${this.id}`;
+        }
+        divText.value = this.todoText;
+
+        const labelText = document.createElement('LABEL');
+        labelText.classList.add('input-sizer');
+        //set input's width
+        labelText.setAttribute('data-value', this.todoText);
+        labelText.appendChild(divText);
+        
 
         const divbtns = document.createElement('DIV');
-        const edit = document.createElement("SPAN");
+        const edit = document.createElement('SPAN');
         edit.classList.add('edit');
-        edit.addEventListener('click', () => this.edit());
-        const del = document.createElement("SPAN");
+        edit.addEventListener('click', () => this.edit(`#text-${this.id}`));
+        edit.innerHTML = '<i class="fas fa-pen"></i>';
+        const del = document.createElement('SPAN');
         del.classList.add('delete');
         del.innerHTML = '<i class="fa fa-trash"></i>';
 
@@ -45,12 +59,12 @@ export class Todo {
         del.setAttribute('onclick', erase);
         del.addEventListener('click', () => this.delete());
         divbtns.appendChild(edit);
-        const space = document.createTextNode("\u00A0");
+        const space = document.createTextNode('\u00A0');
         divbtns.appendChild(space);
         divbtns.appendChild(del);
 
         li.appendChild(spanDone);
-        li.appendChild(divText);
+        li.appendChild(labelText);
         li.appendChild(divbtns);
 
         return li;
@@ -73,12 +87,11 @@ export class Todo {
     }
 
     //edit todo
-    edit() {
+    edit(selector) {
         console.log('patch');
-        const newText = document.querySelector(`#text-${this.id}`).innerHTML;
+        const newText = document.querySelector(selector).value;
         const storeJson = {
             "todoText": newText,
-            "completed": this.completed,
             "id": this.id,
         }
         restMethods.patchTodo(this.id, storeJson);
@@ -106,3 +119,7 @@ export class Todo {
     }
 
 }
+
+logger.add({
+    class: 'Todo'
+});
