@@ -12,7 +12,7 @@ A refactor of the Practical JavaScript Todo List
 
 ## WIREFRAME
 
-![figma](https://www.figma.com/file/J2joFLzByJPvCyLOptO4Y8/ToDo?node-id=0%3A1)
+[figma](https://www.figma.com/file/J2joFLzByJPvCyLOptO4Y8/ToDo?node-id=0%3A1)
 ---
 
 ## 0.Setup
