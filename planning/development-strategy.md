@@ -12,9 +12,7 @@ A refactor of the Practical JavaScript Todo List
 
 ## WIREFRAME
 
-![wireframe](https://github.com/AnisyaPurnama/todolist-manager-group1/blob/main/planning/ToDo.png?raw=true)
-
-
+![figma](https://www.figma.com/file/J2joFLzByJPvCyLOptO4Y8/ToDo?node-id=0%3A1)
 ---
 
 ## 0.Setup
